@@ -1,9 +1,23 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers'
+import { watchLogin } from './sagas'
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
+
+const sagaMiddleware = createSagaMiddleware()
+
+const middleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.nav,
+)
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  composeEnhancers(applyMiddleware(sagaMiddleware, middleware)),
 )
+
+sagaMiddleware.run(watchLogin)
 
 export default store
