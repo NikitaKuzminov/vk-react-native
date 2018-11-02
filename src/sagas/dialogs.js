@@ -16,7 +16,6 @@ export function* send({ payload }) {
 
 export function* getConversations({ payload }) {
   if (payload) {
-    console.log(payload)
     const data = yield call(() => getConversationsManager(payload))
     if (data && data.response) {
       yield put(getConversationsAction(data.response))

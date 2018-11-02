@@ -13,7 +13,6 @@ const mapStateToProps = R.applySpec({
 const mapDispatchToProps = {
   addFriends,
   sendMessage,
-  sendMessage,
 }
 
 export default connect(
