@@ -1,16 +1,19 @@
 import * as R from 'ramda'
 import { connect } from 'react-redux'
-import { getTokenCode, getUser } from '../selectors'
-import { addFriends } from '../actions'
+import { getTokenCode, getUser, getFriendlist } from '../selectors'
+import { addFriends, sendMessage } from '../actions'
 import { Friends } from '../components'
 
 const mapStateToProps = R.applySpec({
   tokenCode: getTokenCode,
   userId: getUser,
+  friendlist: getFriendlist,
 })
 
 const mapDispatchToProps = {
   addFriends,
+  sendMessage,
+  sendMessage,
 }
 
 export default connect(

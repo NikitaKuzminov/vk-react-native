@@ -15,21 +15,7 @@ function navigate(routeName, params) {
   )
 }
 
-function pushScreen(routeName, params) {
-  _navigator.dispatch(
-    NavigationActions.push({
-      routeName,
-      params,
-    }),
-  )
-}
-
-// function push(routeName) {
-//   _navigator.dispatch(NavigationActions.push({ routeName }))
-// }
-
 export default {
   navigate,
-  pushScreen,
   setTopLevelNavigator,
 }

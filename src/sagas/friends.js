@@ -6,7 +6,6 @@ function* friends({ payload }) {
   const data = yield call(() =>
     getFriendList(payload.userId, payload.tokenCode),
   )
-  console.log(data)
   if (data) {
     yield put(addFriends(data))
   }

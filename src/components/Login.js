@@ -7,7 +7,7 @@ const Login = ({ login }) => {
     <WebView
       source={{
         uri:
-          'https://oauth.vk.com/authorize?client_id=6738023&scope=friends&redirect_uri=https://oauth.vk.com/blank.html',
+          'https://oauth.vk.com/authorize?client_id=6738023&scope=friends,messages&redirect_uri=https://oauth.vk.com/blank.html',
       }}
       onNavigationStateChange={response => {
         const responseParams = parse(response.url.split('#')[1])
