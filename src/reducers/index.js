@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux'
-import token from './token'
+import authCode from './authCode'
 
-export default combineReducers({ token })
+export default combineReducers({ authCode })

@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import { handleAction } from 'redux-actions'
 import { login } from '../actions'
 
-const token = handleAction(
+const authCode = handleAction(
   login,
   R.pipe(
     R.nthArg(1),
@@ -11,4 +11,4 @@ const token = handleAction(
   '',
 )
 
-export default token
+export default authCode

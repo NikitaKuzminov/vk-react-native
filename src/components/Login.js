@@ -11,9 +11,9 @@ const Login = ({ login }) => {
       }}
       onNavigationStateChange={response => {
         const responseParams = parse(response.url.split('#')[1])
-        const token = responseParams.code
-        if (token && !response.loading) {
-          login(token)
+        const authCode = responseParams.code
+        if (authCode && !response.loading) {
+          login(authCode)
         }
       }}
     />
