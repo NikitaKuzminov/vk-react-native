@@ -1,12 +1,7 @@
-import { takeEvery, put, call } from 'redux-saga/effects'
+import { takeEvery } from 'redux-saga/effects'
 import { LOGIN } from '../actions/'
-import NavigationService from '../navigator/NavigationService'
 
-function* login({ payload }) {
-  console.log(payload)
-
-  yield NavigationService.navigate('Home')
-}
+import login from './login'
 
 export function* watchLogin() {
   yield takeEvery(LOGIN, login)

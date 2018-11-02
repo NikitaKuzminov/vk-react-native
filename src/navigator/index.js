@@ -14,14 +14,4 @@ const AppNavigator = createSwitchNavigator(
   },
 )
 
-// const AppNavigator = createStackNavigator(
-//   {
-//     Login: LoginScreen,
-//     Home: HomeScreen,
-//   },
-//   {
-//     initialRouteName: 'Login',
-//   },
-// )
-
 export default AppNavigator
