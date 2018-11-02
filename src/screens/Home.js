@@ -1,7 +1,11 @@
 import React from 'react'
-import { Text } from 'react-native'
-import { Friends } from '../containers'
+import { View } from 'react-native'
+import { Friends, CheckToken } from '../containers'
 
-const Home = () => <Friends />
+const Home = ({ navigation }) => (
+  <View>
+    <CheckToken navigation={navigation} />
+  </View>
+)
 
 export default Home

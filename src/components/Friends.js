@@ -8,7 +8,7 @@ class Friends extends Component {
   }
 
   render() {
-    const { friendlist, sendMessage } = this.props
+    const { friendlist } = this.props
     return (
       <View>
         <Text>Friend List</Text>

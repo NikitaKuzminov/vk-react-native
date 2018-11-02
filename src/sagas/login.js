@@ -8,9 +8,8 @@ function* login({ payload }) {
   if (data) {
     yield put(getToken(data.access_token))
     yield put(getUser(data.user_id))
+    yield NavigationService.navigate('Home')
   }
-  yield call(() => getFriendList(data.user_id, data.access_token))
-  yield NavigationService.navigate('Home')
 }
 
 export default login
