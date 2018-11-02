@@ -6,4 +6,5 @@ export const getAccessToken = code =>
     .then(json => ({
       access_token: json.access_token,
       expires_in: json.expires_in,
+      user_id: json.user_id,
     }))

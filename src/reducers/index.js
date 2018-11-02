@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
-import authCode from './authCode'
+import authentication from './authentication'
+import friends from './friends'
 
-export default combineReducers({ authCode })
+export default combineReducers({ authentication, friends })
