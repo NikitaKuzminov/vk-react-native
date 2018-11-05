@@ -8,9 +8,9 @@ class Conversations extends Component {
     return (
       <View>
         <FlatList
-          data={conversations.items}
+          data={conversations}
           renderItem={({ item }) => <ConversationItem item={item} />}
-          keyExtractor={item => item.conversation.peer.id.toString()}
+          keyExtractor={item => item.id.toString()}
         />
       </View>
     )

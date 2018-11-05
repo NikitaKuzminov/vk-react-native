@@ -4,7 +4,7 @@ import NavigationService from '../navigator/NavigationService'
 import { getAccessToken, getFriendList } from '../managers'
 import { setToken } from '../navigator/AsyncStorage'
 
-function* login({ payload }) {
+function* loginWorker({ payload }) {
   const data = yield call(() => getAccessToken(payload))
   if (data) {
     yield put(getToken(data.access_token))
@@ -15,7 +15,9 @@ function* login({ payload }) {
 }
 
 function* loginWatcher() {
-  takeEvery(LOGIN, login)
+  yield takeEvery(LOGIN, loginWorker)
 }
 
-export default loginWatcher
+export default function* login() {
+  yield call(loginWatcher)
+}

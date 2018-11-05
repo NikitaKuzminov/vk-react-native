@@ -4,16 +4,16 @@ import Conversations from './Conversations'
 
 class CheckToken extends Component {
   componentDidMount() {
-    const { token, getConversationsRequest, conversations } = this.props
+    const { getConversationsRequest } = this.props
     getConversationsRequest()
   }
 
   render() {
-    const { token, conversations } = this.props
+    const { conversations } = this.props
     return (
       <View>
         <Text>Диалоги</Text>
-        {!conversations.length ? (
+        {conversations.length ? (
           <Conversations conversations={conversations} />
         ) : (
           <Text>Диалогов нет</Text>

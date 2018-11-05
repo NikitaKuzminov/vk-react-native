@@ -27,6 +27,8 @@ export function* getConversations() {
     const data = yield call(() => getConversationsManager(token))
     if (data && data.response) {
       yield put(getConversationsSuccess(data.response))
+    } else {
+      yield NavigationService.navigate('Login')
     }
   } else {
     yield NavigationService.navigate('Login')
