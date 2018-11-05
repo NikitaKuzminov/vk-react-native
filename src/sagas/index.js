@@ -1,18 +1,8 @@
-import { takeEvery } from 'redux-saga/effects'
-import {
-  LOGIN,
-  ADD_FRIENDS,
-  SEND_MESSAGE,
-  GET_CONVERSATIONS,
-} from '../actions/'
+import { all, call } from 'redux-saga/effects'
 
 import login from './login'
-import friends from './friends'
-import { send, getConversations } from './dialogs'
+import dialogs from './dialogs'
 
-export function* watchLogin() {
-  yield takeEvery(LOGIN, login)
-  yield takeEvery(ADD_FRIENDS, friends)
-  yield takeEvery(SEND_MESSAGE, send)
-  yield takeEvery(GET_CONVERSATIONS, getConversations)
+export default function* rootSaga() {
+  yield all([call(login), call(dialogs)])
 }

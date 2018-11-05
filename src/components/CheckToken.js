@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import Conversations from './Conversations'
 
 class CheckToken extends Component {
-  componentWillMount() {
-    const { token, getConversations } = this.props
-    if (!token) {
-      this.props.navigation.navigate('Login')
-    } else {
-      getConversations(token)
-    }
+  componentDidMount() {
+    const { token, getConversationsRequest, conversations } = this.props
+    getConversationsRequest()
   }
 
   render() {
-    const { token } = this.props
+    const { token, conversations } = this.props
     return (
       <View>
-        <Text>{token}</Text>
+        <Text>Диалоги</Text>
+        {!conversations.length ? (
+          <Conversations conversations={conversations} />
+        ) : (
+          <Text>Диалогов нет</Text>
+        )}
       </View>
     )
   }
