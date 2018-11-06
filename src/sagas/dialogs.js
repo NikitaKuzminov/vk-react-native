@@ -1,13 +1,18 @@
 import { put, call, select, takeEvery } from 'redux-saga/effects'
-import {
-  sendMessage,
-  getConverstaions as getConversationsManager,
-} from '../managers'
+import { sendMessage, getConverstaions, getHistory } from '../managers'
 import NavigationService from '../navigator/NavigationService'
-import { getConversationsSuccess } from '../actions'
-import { getToken } from '../navigator/AsyncStorage'
+import {
+  getConversationsSuccess,
+  getHistorySuccess,
+  getToken as getTokenAction,
+} from '../actions'
+import { getToken } from '../repositories'
 import { getTokenCode } from '../selectors'
-import { GET_CONVERSATIONS_REQUEST, SEND_MESSAGE } from '../actions'
+import {
+  GET_CONVERSATIONS_REQUEST,
+  GET_HISTORY_REQUEST,
+  SEND_MESSAGE,
+} from '../actions'
 
 export function* send({ payload }) {
   if (payload) {
@@ -17,14 +22,31 @@ export function* send({ payload }) {
   }
 }
 
-export function* getConversations() {
+export function* getHistoryWatcher({ payload }) {
+  if (payload) {
+    const token = yield select(getTokenCode)
+    if (token) {
+      const data = yield call(getHistory, {
+        access_token: token,
+        id: payload,
+      })
+      yield put(getHistorySuccess(data))
+      yield NavigationService.navigate('ConversationHistory')
+    } else {
+      console.log('fail here')
+    }
+  }
+}
+
+export function* getConversationsWatcher() {
   let token
-  token = yield call(() => getToken())
+  token = yield select(getTokenCode)
   if (!token) {
-    token = yield select(getTokenCode)
+    token = yield call(getToken)
+    yield put(getTokenAction(token))
   }
   if (token) {
-    const data = yield call(() => getConversationsManager(token))
+    const data = yield call(() => getConverstaions(token))
     if (data && data.response) {
       yield put(getConversationsSuccess(data.response))
     } else {
@@ -36,7 +58,8 @@ export function* getConversations() {
 }
 
 function* dialogsWatcher() {
-  yield takeEvery(GET_CONVERSATIONS_REQUEST, getConversations)
+  yield takeEvery(GET_CONVERSATIONS_REQUEST, getConversationsWatcher)
+  yield takeEvery(GET_HISTORY_REQUEST, getHistoryWatcher)
   yield takeEvery(SEND_MESSAGE, send)
 }
 

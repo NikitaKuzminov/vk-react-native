@@ -4,13 +4,19 @@ import ConversationItem from './ConversationItem'
 
 class Conversations extends Component {
   render() {
-    const { conversations } = this.props
+    const { conversations, getHistoryRequest } = this.props
     return (
       <View>
         <FlatList
           data={conversations}
-          renderItem={({ item }) => <ConversationItem item={item} />}
+          renderItem={({ item }) => (
+            <ConversationItem
+              item={item}
+              getHistoryRequest={getHistoryRequest}
+            />
+          )}
           keyExtractor={item => item.id.toString()}
+          onEndReached={() => console.log('here')}
         />
       </View>
     )

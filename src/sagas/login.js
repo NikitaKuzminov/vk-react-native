@@ -2,7 +2,7 @@ import { put, call, takeEvery } from 'redux-saga/effects'
 import { getToken, getUser, LOGIN } from '../actions/'
 import NavigationService from '../navigator/NavigationService'
 import { getAccessToken, getFriendList } from '../managers'
-import { setToken } from '../navigator/AsyncStorage'
+import { setToken } from '../repositories'
 
 function* loginWorker({ payload }) {
   const data = yield call(() => getAccessToken(payload))

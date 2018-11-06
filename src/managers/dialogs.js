@@ -1,3 +1,5 @@
+import { getConversationsFailure } from '../actions'
+
 export const sendMessage = (user_id, message, tokenCode) =>
   fetch(
     `https://api.vk.com/method/messages.send?user_id=${user_id}&message=${message}&access_token=&v=5.87`,
@@ -48,6 +50,14 @@ const getResponse = json => {
     )
     return newJson
   } catch (err) {
+    getConversationsFailure()
     return null
   }
 }
+
+export const getHistory = ({ access_token, id }) =>
+  fetch(
+    `https://api.vk.com/method/messages.getHistory?access_token=${access_token}&user_id=${id}&v=5.87`,
+  )
+    .then(res => res.json())
+    .then(json => json.response.items)

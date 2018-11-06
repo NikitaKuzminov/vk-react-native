@@ -9,12 +9,14 @@ class CheckToken extends Component {
   }
 
   render() {
-    const { conversations } = this.props
+    const { conversations, getHistoryRequest } = this.props
     return (
       <View>
-        <Text>Диалоги</Text>
         {conversations.length ? (
-          <Conversations conversations={conversations} />
+          <Conversations
+            conversations={conversations}
+            getHistoryRequest={getHistoryRequest}
+          />
         ) : (
           <Text>Диалогов нет</Text>
         )}

@@ -1,7 +1,10 @@
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
-import { LoginScreen, HomeScreen } from '../screens'
+import { LoginScreen, HomeScreen, ConversationHistoryScreen } from '../screens'
 
-const AppStack = createStackNavigator({ Home: HomeScreen })
+const AppStack = createStackNavigator({
+  Home: HomeScreen,
+  ConversationHistory: ConversationHistoryScreen,
+})
 const AuthStack = createStackNavigator({ Login: LoginScreen })
 
 const AppNavigator = createSwitchNavigator(

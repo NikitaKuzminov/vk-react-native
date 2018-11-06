@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, Image } from 'react-native'
 import styled from 'styled-components'
 
 const ThumbImage = styled(Image)`
@@ -15,7 +15,7 @@ const Container = styled.View`
 
 class ConversationItem extends Component {
   render() {
-    const { item } = this.props
+    const { item, getHistoryRequest } = this.props
     return (
       <Container>
         {item.opponent ? (
@@ -25,7 +25,7 @@ class ConversationItem extends Component {
             }}
           />
         ) : null}
-        <Text>
+        <Text onPress={() => getHistoryRequest(item.id)}>
           {item.opponent
             ? item.opponent.first_name || item.opponent.name
             : null}

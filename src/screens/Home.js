@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View } from 'react-native'
 import { Friends, CheckToken } from '../containers'
 
-const Home = ({ navigation }) => (
-  <View>
-    <CheckToken navigation={navigation} />
-  </View>
-)
+class Home extends Component {
+  static navigationOptions = {
+    title: 'Диалоги',
+  }
+
+  render() {
+    const { navigation } = this.props
+    return (
+      <View>
+        <CheckToken navigation={navigation} />
+      </View>
+    )
+  }
+}
 
 export default Home
